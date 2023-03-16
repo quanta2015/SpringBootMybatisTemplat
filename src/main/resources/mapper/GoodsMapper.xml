@@ -24,6 +24,11 @@
    </select>
 
 
+   <select id = "selectPage" parameterType = "int" resultType="com.example.demo.model.Goods" >
+      select * from t_goods
+   </select>
+
+
    <delete id = "deleteById" parameterType = "int" >
       DELETE from t_goods WHERE id = #{id};
    </delete>
@@ -32,6 +37,10 @@
    <select id="procGoodsDetail" statementType="CALLABLE" useCache="false" resultType = "com.alibaba.fastjson.JSONObject">
 		{call PROC_GOODS_DETAIL(#{params, mode=IN})}
 	</select>
+
+   <select id="procSelectPage" statementType="CALLABLE" useCache="false" resultType = "com.alibaba.fastjson.JSONObject">
+      {call PROC_GOODS_PAGE(#{params, mode=IN})}
+   </select>
 
 
 

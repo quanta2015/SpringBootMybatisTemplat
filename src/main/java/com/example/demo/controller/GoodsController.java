@@ -9,10 +9,9 @@ import com.example.demo.model.ResultVO;
 import com.alibaba.fastjson.JSON;
 import com.example.demo.service.GoodsService;
 import org.springframework.http.ResponseEntity;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.RequestParam;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 import org.springframework.beans.factory.annotation.Autowired;
+import com.baomidou.mybatisplus.extension.plugins.pagination.Page;
 import lombok.extern.slf4j.Slf4j;
 
 import java.util.List;
@@ -27,12 +26,8 @@ public class GoodsController extends BaseController {
     @Autowired
     private GoodsMapper goodsMapper;
 
-//    private GoodsService goodsService;
-
-
-
     @GetMapping("/select")
-    public ResponseEntity<ResultVO<List<Goods>>> getAllUser()  {
+    public ResponseEntity<ResultVO<List<Goods>>> select()  {
         List<Goods> goodsList = goodsMapper.selectList(null);
         return success(goodsList);
     }
@@ -47,6 +42,14 @@ public class GoodsController extends BaseController {
     @GetMapping("/selectByName")
     public ResponseEntity<ResultVO<List<Goods>>> selectByName(@RequestParam("name") String name)  {
         List<Goods> goodsList = goodsMapper.selectByName(name);
+        return success(goodsList);
+    }
+
+
+    @GetMapping("/selectPage")
+    public ResponseEntity<ResultVO<Page<Goods>>> selectPage()  {
+        Page<Goods> page = new Page<>(3, 10);
+        Page<Goods> goodsList = goodsMapper.selectPage(page);
         return success(goodsList);
     }
 
@@ -80,7 +83,12 @@ public class GoodsController extends BaseController {
         return success(goodsList);
     }
 
+    @PostMapping("/procSelectPage")
+    public ResponseEntity<ResultVO<List<JSONObject>>> procSelectPage(@RequestBody  JSONObject json)  {
+        String params = json.toJSONString();
+        List<JSONObject> goodsList = goodsMapper.procSelectPage(params);
 
-
+        return success(goodsList);
+    }
 
 }
