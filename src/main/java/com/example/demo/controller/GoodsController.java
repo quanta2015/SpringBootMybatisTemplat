@@ -86,8 +86,9 @@ public class GoodsController extends BaseController {
     @PostMapping("/procSelectPage")
     public ResponseEntity<ResultVO<List<JSONObject>>> procSelectPage(@RequestBody  JSONObject json)  {
         String params = json.toJSONString();
-        List<JSONObject> goodsList = goodsMapper.procSelectPage(params);
+//        log.error("json params: {}",params);
 
+        List<JSONObject> goodsList = goodsMapper.procSelectPage(params);
         return success(goodsList);
     }
 

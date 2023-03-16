@@ -37,3 +37,15 @@ SpringBoot 集成 MybatisPlus 范例工程。
 }
 
 ```
+
+
+### 工具模块
+utils 路径下集成了第三方插件
+
+- DataHandler: 自动为数据表添加创建和修改时间
+- PageConfig: MybatisPlus 分页插件
+- RegJsonParser: 将 resquest 请求 body 的参数添加 JSON 支持
+
+
+
+
