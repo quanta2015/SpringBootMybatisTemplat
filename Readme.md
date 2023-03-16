@@ -35,7 +35,6 @@ SpringBoot 集成 MybatisPlus 范例工程。
     "size": 10,
     "page":3,
 }
-
 ```
 
 
