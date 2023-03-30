@@ -26,6 +26,10 @@ public class GoodsController extends BaseController {
     @Autowired
     private GoodsMapper goodsMapper;
 
+
+
+
+
     @GetMapping("/select")
     public ResponseEntity<ResultVO<List<Goods>>> select()  {
         List<Goods> goodsList = goodsMapper.selectList(null);
